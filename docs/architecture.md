@@ -1,8 +1,8 @@
 # 🛠️ Architecture / SSD
 
 **Projeto:** Caronas UTFPR
-**Versão:** 1.0.0 · definido via `/utf-architecture`
-**Última atualização:** 2026-10-10
+**Versão:** 1.0.1 · atualizado via `/utf-setup` (ratificação de decisões do scaffold)
+**Última atualização:** 2026-10-11
 
 > 🤖 **O `prd.md` responde _o quê_ o produto faz. Este responde _onde as coisas
 > moram e como se chamam_.** Detalhe de tela — rota, componente, contrato —
@@ -44,10 +44,10 @@
   `@if`/`@switch`, `@for` com `track`, `@defer`, signals (writable/computed) como
   fonte de estado, `model()` para two-way, `effect()` para efeitos colaterais,
   `input()`/`output()`, `inject()`, Pipes para formatação.
-- **Framework CSS:** **Tailwind CSS** (ID5) — configuração em `tailwind.config.ts`.
+- **Framework CSS:** **Tailwind CSS v4** (ID5) — tokens em `styles.css` via `@theme` (configuração nativa do Tailwind v4, sem `tailwind.config.ts`).
 - **Dados (em duas fases):** **json-server** no MVP (E2) → **Supabase** na E3, com autenticação (JWT) e CRUD reais (IDs 21–22). A troca atinge só os Services (§2.1).
 - **PWA:** `manifest.webmanifest` — ícones, cores de tema, splash, standalone, offline (ID3). Valores em `docs/design-tokens.md`.
-- **Testes:** **Vitest** (unitário, padrão do Angular 21) + **Playwright** (E2E) + comandos exatos de suíte e lint (ID33).
+- **Testes:** **Vitest** (unitário, padrão do Angular 21) + **Playwright** (E2E — a instalar na E2/E3) + comandos exatos de suíte e lint (ID33).
 
 ### 🌐 2.1. Camada de dados — regras estruturais
 
@@ -216,7 +216,7 @@ erDiagram
 | ID | Padrão Arquitetural Declarado |
 |----|-------------------------------|
 | **ID4** | Componentes **standalone only** — zero `NgModule` em todo o projeto |
-| **ID5** | Framework CSS: **Tailwind CSS** — configuração em `tailwind.config.ts`, tokens em `docs/design-tokens.md` |
+| **ID5** | Framework CSS: **Tailwind CSS v4** — tokens em `styles.css` via `@theme` (configuração nativa), design tokens em `docs/design-tokens.md` |
 | **ID6** | Controle de fluxo: **`@if` / `@switch`** — proibido `*ngIf`/`*ngSwitch`/`*ngSwitchCase` |
 | **ID7** | Loop: **`@for` com `track` obrigatório** — ex.: `@for (ride of rides(); track ride.id)` |
 | **ID8** | Pipes: **nativos (date, currency, json) + custom** em `shared/pipes/` (ex.: `rideStatus`, `timeAgo`, `seatCount`, `currencyBr`) |
@@ -256,6 +256,7 @@ erDiagram
 
 | Data | Versão | O que mudou |
 | :--- | :----- | :---------- |
+| 2026-10-11 | 1.0.1 | Ratificação via `/utf-setup`: Tailwind v4 (tokens em `styles.css`), `withComponentInputBinding()` implementado no `app.config.ts`, Playwright planejado para E2/E3 |
 | 2026-10-10 | 1.0.0 | Versão inicial via `/utf-architecture` — Angular 21, Supabase, Vitest/Playwright, Tailwind, estrutura feature-driven |
 
 ---
